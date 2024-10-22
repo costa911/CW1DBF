@@ -1,0 +1,30 @@
+<!-- views/showTables.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Tables - Stepping Into History</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Available Tables in Database</h1>
+        <p><strong>Username:</strong> <%= username %></p>
+        <p><strong>Access Level:</strong> <%= userType %></p>
+
+        <div class="tables-list">
+            <h2>Tables</h2>
+            <ul>
+                <% if (tables.length > 0) { %>
+                    <% tables.forEach(table => { %>
+                        <li><%= table %></li>
+                    <% }) %>
+                <% } else { %>
+                    <p>No tables available.</p>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
