@@ -10,14 +10,21 @@
 <body>
     <div class="dashboard-container">
         <div class="welcome-message">
-            <h1>Welcome to Stepping Into History, <%= username %>!</h1>
+            <h1>Welcome to Stepping Into History, <%= username || 'Guest' %>!</h1>
         </div>
 
         <div class="user-info">
             <h2>User Information</h2>
-            <p><strong>Username:</strong> <%= username %></p>
-            <p><strong>Access Level:</strong> <%= userType %></p>
+            <p><strong>Username:</strong> <%= username || 'N/A' %></p>
+            <p><strong>Access Level:</strong> <%= userType || 'N/A' %></p>
         </div>
+
+        <!-- Display any error messages -->
+        <% if (error) { %>
+            <div class="error-message" style="color: red;">
+                <p><strong>Error:</strong> <%= error %></p>
+            </div>
+        <% } %>
 
         <!-- Add dashboard navigation or features depending on user role -->
         <div class="dashboard-actions">
@@ -27,6 +34,7 @@
                     <li><a href="/manage-users">Manage Users</a></li>
                     <li><a href="/view-reports">View Reports</a></li>
                     <li><a href="/show-tables">Show Tables</a></li> <!-- Link to Show Tables -->
+                    <li><a href="/show-tours">Show Upcoming Tours</a></li> <!-- Link to Show Upcoming Tours -->
                     <li><a href="/settings">Settings</a></li>
                 </ul>
             <% } else if (userType === 'editor') { %>
@@ -35,6 +43,7 @@
                     <li><a href="/edit-articles">Edit Articles</a></li>
                     <li><a href="/view-submissions">View Submissions</a></li>
                     <li><a href="/show-tables">Show Tables</a></li> <!-- Link to Show Tables -->
+                    <li><a href="/show-tours">Show Upcoming Tours</a></li> <!-- Link to Show Upcoming Tours -->
                 </ul>
             <% } else { %>
                 <h3>Viewer Dashboard</h3>
@@ -42,6 +51,7 @@
                 <ul>
                     <li><a href="/view-content">View Content</a></li>
                     <li><a href="/show-tables">Show Tables</a></li> <!-- Link to Show Tables -->
+                    <li><a href="/show-tours">Show Upcoming Tours</a></li> <!-- Link to Show Upcoming Tours -->
                 </ul>
             <% } %>
         </div>

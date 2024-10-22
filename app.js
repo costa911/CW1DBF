@@ -13,6 +13,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
@@ -62,7 +63,8 @@ app.get('/dashboard', (req, res) => {
     }
     res.render('dashboard', {
         userType: req.session.userType,
-        username: req.session.username
+        username: req.session.username,
+        error: null // Ensure error is defined here
     });
 });
 
@@ -87,11 +89,42 @@ app.get('/show-tables', (req, res) => {
     connection.query('SHOW TABLES', (err, results) => {
         if (err) {
             console.error('Error fetching tables:', err);
-            return res.render('dashboard', { error: 'Unable to fetch tables', tables: [] });
+            return res.render('dashboard', { 
+                error: 'Unable to fetch tables',
+                userType: req.session.userType,
+                username: req.session.username 
+            });
         }
 
         const tableNames = results.map(row => Object.values(row)[0]); // Extract table names from results
         res.render('showTables', { tables: tableNames, userType: req.session.userType, username: req.session.username });
+    });
+});
+
+// Show Tours route
+app.get('/show-tours', (req, res) => {
+    if (!req.session.username) {
+        return res.redirect('/');
+    }
+
+    const connection = getConnection();  // Ensure the database connection is already established
+
+    connection.query('SELECT * FROM Tour', (err, results) => {
+        if (err) {
+            console.error('Error fetching tours:', err);
+            return res.render('dashboard', { 
+                error: 'Unable to fetch tours',
+                userType: req.session.userType,
+                username: req.session.username 
+            });
+        }
+
+        // Assuming your columns are named TourName and TourDate
+        const tourDetails = results.map(row => ({
+            name: row.TourName,   // Accessing TourName
+            date: row.TourDate     // Accessing TourDate
+        }));
+        res.render('showTours', { tours: tourDetails, userType: req.session.userType, username: req.session.username });
     });
 });
 

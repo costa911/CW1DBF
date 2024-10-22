@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Tours - Stepping Into History</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Upcoming Tours</h1>
+        <p><strong>Username:</strong> <%= username %></p>
+        <p><strong>Access Level:</strong> <%= userType %></p>
+
+        <div class="tours-list">
+            <h2>Tours</h2>
+            <ul>
+                <% if (tours.length > 0) { %>
+                    <% tours.forEach(tour => { %>
+                        <li><strong><%= tour.name %></strong>: <%= tour.date %> - <%= tour.description %></li>
+                    <% }) %>
+                <% } else { %>
+                    <p>No upcoming tours available.</p>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
