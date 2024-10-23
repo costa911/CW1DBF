@@ -1,4 +1,4 @@
-// tourService.js
+
 const { getConnection } = require('./db');
 
 // Function to get all tours

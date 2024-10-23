@@ -1,4 +1,4 @@
-// public/js/dashboard.js
+
 document.addEventListener('DOMContentLoaded', function() {
     const phpMyAdminLink = document.querySelector('.phpmyadmin-link');
     if (phpMyAdminLink) {

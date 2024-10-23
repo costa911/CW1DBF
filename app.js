@@ -1,4 +1,4 @@
-// app.js
+
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -119,7 +119,6 @@ app.get('/show-tours', (req, res) => {
             });
         }
 
-        // Assuming your columns are named TourName and TourDate
         const tourDetails = results.map(row => ({
             name: row.TourName,   // Accessing TourName
             date: row.TourDate     // Accessing TourDate
@@ -128,7 +127,7 @@ app.get('/show-tours', (req, res) => {
     });
 });
 
-// Insert a new tour
+
 app.post('/add-tour', (req, res) => {
     const { name, date, description } = req.body.newTour;
     const connection = getConnection();
@@ -142,7 +141,7 @@ app.post('/add-tour', (req, res) => {
     });
 });
 
-// Update an existing tour
+
 app.post('/update-tour', (req, res) => {
     const { id, updatedTour } = req.body; // Assuming updatedTour contains the new values
     const connection = getConnection();
@@ -156,7 +155,7 @@ app.post('/update-tour', (req, res) => {
     });
 });
 
-// Delete a tour
+
 app.post('/delete-tour', (req, res) => {
     const { id } = req.body; // Assuming id is passed in the form
     const connection = getConnection();
@@ -170,7 +169,7 @@ app.post('/delete-tour', (req, res) => {
     });
 });
 
-// Query existing tours (this could be part of your existing /show-tours route)
+
 app.get('/show-tours', (req, res) => {
     const connection = getConnection();
     
@@ -184,7 +183,7 @@ app.get('/show-tours', (req, res) => {
     });
 });
 
-// Show Books route
+
 app.get('/show-book', (req, res) => {
     if (!req.session.username) {
         return res.redirect('/');
