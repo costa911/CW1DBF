@@ -128,6 +128,107 @@ app.get('/show-tours', (req, res) => {
     });
 });
 
+// Insert a new tour
+app.post('/add-tour', (req, res) => {
+    const { name, date, description } = req.body.newTour;
+    const connection = getConnection();
+
+    connection.query('INSERT INTO Tour (TourName, TourDate) VALUES (?, ?, ?)', [name, date, description], (err) => {
+        if (err) {
+            console.error('Error adding tour:', err);
+            return res.redirect('/show-tours'); // Redirect on error
+        }
+        res.redirect('/show-tours'); // Redirect after success
+    });
+});
+
+// Update an existing tour
+app.post('/update-tour', (req, res) => {
+    const { id, updatedTour } = req.body; // Assuming updatedTour contains the new values
+    const connection = getConnection();
+
+    connection.query('UPDATE Tour SET TourName = ?, TourDate = ? WHERE id = ?', [updatedTour.name, updatedTour.date, id], (err) => {
+        if (err) {
+            console.error('Error updating tour:', err);
+            return res.redirect('/show-tours'); // Redirect on error
+        }
+        res.redirect('/show-tours'); // Redirect after success
+    });
+});
+
+// Delete a tour
+app.post('/delete-tour', (req, res) => {
+    const { id } = req.body; // Assuming id is passed in the form
+    const connection = getConnection();
+
+    connection.query('DELETE FROM Tour WHERE id = ?', [id], (err) => {
+        if (err) {
+            console.error('Error deleting tour:', err);
+            return res.redirect('/show-tours'); // Redirect on error
+        }
+        res.redirect('/show-tours'); // Redirect after success
+    });
+});
+
+// Query existing tours (this could be part of your existing /show-tours route)
+app.get('/show-tours', (req, res) => {
+    const connection = getConnection();
+    
+    connection.query('SELECT * FROM Tour', (err, results) => {
+        if (err) {
+            console.error('Error fetching tours:', err);
+            return res.render('dashboard', { error: 'Unable to fetch tours' });
+        }
+
+        res.render('showTours', { tours: results, userType: req.session.userType, username: req.session.username });
+    });
+});
+
+// Show Books route
+app.get('/show-book', (req, res) => {
+    if (!req.session.username) {
+        return res.redirect('/');
+    }
+
+    const connection = getConnection();  // Get the existing database connection
+
+    connection.query('SELECT * FROM Book LIMIT 5', (err, results) => {
+        if (err) {
+            console.error('Error fetching books:', err);
+            return res.render('dashboard', { 
+                error: 'Unable to fetch books',
+                userType: req.session.userType,
+                username: req.session.username 
+            });
+        }
+
+        const bookDetails = results.map(row => ({
+            title: row.BookTitle,
+            author: row.Author,
+            year: row.YearPublished,
+        }));
+        
+        res.render('showBooks', { 
+            books: bookDetails, 
+            userType: req.session.userType, 
+            username: req.session.username 
+        });
+    });
+});
+
+app.get('/check-phpmyadmin-access', (req, res) => {
+    if (!req.session.username) {
+        return res.status(403).json({ error: 'Not logged in' });
+    }
+    
+    if (req.session.userType !== 'admin' && req.session.userType !== 'editor') {
+        return res.status(403).json({ error: 'Unauthorized' });
+    }
+    
+    // Return the phpMyAdmin URL
+    res.json({ url: 'http://localhost/phpmyadmin' });
+});
+
 // Start the server
 app.listen(3000, () => {
     console.log('Server running on port 3000');

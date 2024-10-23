@@ -4,7 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upcoming Tours - Stepping Into History</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tours-list {
+            margin-top: 20px;
+        }
+
+        .tour {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .image-container img {
+            object-fit: cover;
+            width: 200px;
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
     <div class="dashboard-container">
@@ -14,15 +48,28 @@
 
         <div class="tours-list">
             <h2>Tours</h2>
-            <ul>
-                <% if (tours.length > 0) { %>
-                    <% tours.forEach(tour => { %>
-                        <li><strong><%= tour.name %></strong>: <%= tour.date %> - <%= tour.description %></li>
-                    <% }) %>
-                <% } else { %>
-                    <p>No upcoming tours available.</p>
-                <% } %>
-            </ul>
+            <% if (tours.length > 0) { %>
+                <% 
+                const images = [
+                    "https://images.pexels.com/photos/27575551/pexels-photo-27575551/free-photo-of-coloseum.jpeg",
+                    "https://media.cnn.com/api/v1/images/stellar/prod/220303081037-stonehenge-file-restricted.jpg?q=h_1688,w_3000,x_0,y_0",
+                    "https://cdn.britannica.com/82/94382-050-20CF23DB/Great-Wall-of-China-Beijing.jpg",
+                    "https://assets.editorial.aetnd.com/uploads/2011/06/gettyimages-1161481402.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwSf8G7Aj1u7S-b4Zz3UaTeGfJNV2JXeLStw&s"
+                ];
+                tours.forEach((tour, index) => { %>
+                    <div class="tour">
+                        <h3><%= tour.name %></h3>
+                        <p><strong>Date:</strong> <%= tour.date %></p>
+                        <p><strong>Description:</strong> <%= tour.description %></p>
+                        <div class="image-container">
+                            <img src="<%= images[index] %>" alt="Tour image">
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No upcoming tours available.</p>
+            <% } %>
         </div>
     </div>
 </body>

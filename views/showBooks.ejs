@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Collection - Stepping Into History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .books-list {
+            margin-top: 20px;
+        }
+
+        .book {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .image-container img {
+            object-fit: cover;
+            width: 150px;  /* Made slightly smaller for book covers */
+            height: 200px; /* Taller for typical book cover proportions */
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Historical Books</h1>
+        <p><strong>Username:</strong> <%= username %></p>
+        <p><strong>Access Level:</strong> <%= userType %></p>
+
+        <div class="books-list">
+            <h2>Featured Books</h2>
+            <% if (books.length > 0) { %>
+                <% 
+                const images = [
+                    "https://m.media-amazon.com/images/I/61f+m0cDYEL._AC_UF1000,1000_QL80_.jpg",
+                    "https://bdlcontent.storage.googleapis.com/wp-content/uploads/2022/07/08190252/Sapiens-front-324x500.jpg",
+                    "https://m.media-amazon.com/images/I/81OfSW49oIL._AC_UF1000,1000_QL80_.jpg",
+                    "https://m.media-amazon.com/images/I/81j0BRX2FHL._AC_UF1000,1000_QL80_.jpg",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXn89muo6ovq6gfaIDWSeyemsTiLNv_ceWMA&s"
+                ];
+                books.slice(0, 5).forEach((book, index) => { %>
+                    <div class="book">
+                        <h3><%= book.title %></h3>
+                        <p><strong>Author:</strong> <%= book.author %></p>
+                        <div class="image-container">
+                            <img src="<%= images[index] %>" alt="Cover of <%= book.title %>">
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No books available.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
