@@ -17,9 +17,7 @@ Query Optimization: Writing efficient SQL queries for data retrieval and manipul
 Data Analysis: Analyzing historical data to provide insights for organizational decision-making.
 
 # Technologies Used
-Database Management System: MySQL
-Programming Language: SQL
-Development Environment: MySQL Workbench
+Visual Studio Code Editor, XAMPP, MySQL Workbench, phpMyAdmin, Githu, Node.js, EJS, HTML, CSS, Javascript
 
 # Future Enhancements
 User Interface Development: Create a web-based interface for easier access to the database.
