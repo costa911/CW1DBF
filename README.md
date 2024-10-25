@@ -16,6 +16,9 @@ Visual Studio Code Editor, XAMPP, MySQL Workbench, phpMyAdmin, Githu, Node.js, E
 
 # Web Interface Trailer 
 
+![Web interface Trailer for Github-VEED](https://github.com/user-attachments/assets/65edb859-800a-4617-ac87-162dd18bec64)
+
+# Queries Video Presentation 
 
 
 
