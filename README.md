@@ -14,6 +14,10 @@ Web Interface: Creating a web interface for the 'Stepping into History' staff.
 # Technologies Used
 Visual Studio Code Editor, XAMPP, MySQL Workbench, phpMyAdmin, Githu, Node.js, EJS, HTML, CSS, Javascript
 
+# Web Interface Trailer 
+
+![Working on phpMyAdmin-VEED (1)](https://github.com/user-attachments/assets/90adc81d-233d-43b4-805a-33158faeba36)
+
 # Future Enhancements
 Complete the web interface by integrating database content with a more user-friendly and visual design. Add more pages, such as historian articles, trailers for upcoming workshops, book reviews, a community forum, and more. 
 
