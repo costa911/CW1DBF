@@ -6,25 +6,19 @@ Coursework 1; Database Fundamentals "Stepping into History"
 This project was developed during my studies at the University of Derby. It involves creating a comprehensive database for a historical organization that specializes in selling books, magazine subscriptions, tours, workshops, and genealogical research services.
 
 # Objectives
-Database Design: Create a structured database to manage various types of data related to the organization's offerings.
+Database Design: Create a structured database to manage various data related to the organization's offerings.
 User Accessibility: Ensure the database is user-friendly for staff and customers alike.
 Data Integrity: Implement measures to maintain accurate and reliable data.
-
-# Skills Developed
-Working on this hands-on project has significantly enhanced my SQL skills, including:
-Database Creation: Designing and implementing relational databases.
-Query Optimization: Writing efficient SQL queries for data retrieval and manipulation.
-Data Analysis: Analyzing historical data to provide insights for organizational decision-making.
+Web Interface: Creating a web interface for the 'Stepping into History' staff. 
 
 # Technologies Used
 Visual Studio Code Editor, XAMPP, MySQL Workbench, phpMyAdmin, Githu, Node.js, EJS, HTML, CSS, Javascript
 
 # Future Enhancements
-User Interface Development: Create a web-based interface for easier access to the database.
-Data Analytics Integration: Incorporate analytics tools to provide insights into sales trends and customer preferences.
+Complete the web interface by integrating database content with a more user-friendly and visual design. Add more pages, such as historian articles, trailers for upcoming workshops, book reviews, a community forum, and more. 
 
 # Conclusion
-This project not only allowed me to apply theoretical knowledge in a practical setting but also equipped me with valuable skills that will be beneficial in my future career. 
+This project allowed me to apply theoretical knowledge in a practical setting and equipped me with valuable skills that will benefit my future career. 
 
-Thank you for checking out this project! Feel free to reach out if you have any questions or suggestions.
+Thank you for checking out this project. Please feel free to contact me if you have any questions or suggestions.
 
